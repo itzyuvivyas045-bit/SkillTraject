@@ -1,20 +1,15 @@
-import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
 
-export default async function Home() {
-  const supabase = await createClient();
-  const { data: skills, error } = await supabase.from("skills").select("*");
-
+export default function Home() {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold mb-4">SkillTraject</h1>
-      {error && <p className="text-red-600">Error: {error.message}</p>}
-      <ul className="list-disc pl-6">
-        {skills?.map((s) => (
-          <li key={s.id}>
-            {s.name} ({s.category})
-          </li>
-        ))}
-      </ul>
+    <main className="mx-auto max-w-2xl space-y-6 p-8 text-center">
+      <h1 className="text-4xl font-bold">SkillTraject</h1>
+      <p className="text-gray-400">
+        Verified skills for students. Trusted talent for companies.
+      </p>
+      <Link href="/signup" className="inline-block rounded bg-blue-600 px-5 py-2">
+        Get started
+      </Link>
     </main>
   );
 }
