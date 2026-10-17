@@ -35,40 +35,54 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-6">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-        <h1 className="text-2xl font-bold">Log in</h1>
+    <main className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl items-center justify-center px-6 py-10">
+      <form onSubmit={handleSubmit} className="card w-full max-w-md space-y-5 p-8">
+        <h1 className="font-display text-3xl font-extrabold">Log in</h1>
 
-        <input
-          className="w-full rounded border border-gray-600 bg-transparent px-3 py-2"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="w-full rounded border border-gray-600 bg-transparent px-3 py-2"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div>
+          <label htmlFor="email" className="mb-1 block text-sm font-semibold">
+            Email
+          </label>
+          <input
+            id="email"
+            className="input"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <div>
+          <label htmlFor="password" className="mb-1 block text-sm font-semibold">
+            Password
+          </label>
+          <input
+            id="password"
+            className="input"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-blue-600 px-3 py-2 font-medium disabled:opacity-50"
-        >
+        {error && (
+          <p
+            role="alert"
+            className="rounded-lg border-2 border-ink bg-coral/20 px-3 py-2 text-sm"
+          >
+            {error}
+          </p>
+        )}
+
+        <button type="submit" disabled={loading} className="btn btn-primary w-full">
           {loading ? "Logging in..." : "Log in"}
         </button>
 
         <p className="text-sm">
-          No account?{" "}
-          <Link href="/signup" className="underline">
+          No account yet?{" "}
+          <Link href="/signup" className="font-semibold underline">
             Sign up
           </Link>
         </p>

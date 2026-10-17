@@ -5,6 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
+const ROLES = [
+  { id: "student", label: "Student", note: "Show skills with proof", on: "bg-mint" },
+  { id: "company", label: "Company", note: "Find verified students", on: "bg-coral" },
+] as const;
+
 export default function SignupPage() {
   const router = useRouter();
   const supabase = createClient();
@@ -38,63 +43,92 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-6">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-        <h1 className="text-2xl font-bold">Create account</h1>
+    <main className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl items-center justify-center px-6 py-10">
+      <form onSubmit={handleSubmit} className="card w-full max-w-md space-y-5 p-8">
+        <h1 className="font-display text-3xl font-extrabold">
+          Create your account
+        </h1>
 
-        <div className="flex gap-2">
-          {(["student", "company"] as const).map((r) => (
+        <div className="grid grid-cols-2 gap-3">
+          {ROLES.map((r) => (
             <button
-              key={r}
+              key={r.id}
               type="button"
-              onClick={() => setRole(r)}
-              className={`flex-1 rounded border px-3 py-2 capitalize ${
-                role === r ? "bg-white text-black" : "border-gray-600"
+              aria-pressed={role === r.id}
+              onClick={() => setRole(r.id)}
+              className={`rounded-xl border-2 border-ink p-3 text-left transition ${
+                role === r.id
+                  ? `${r.on} shadow-[3px_3px_0_var(--color-ink)]`
+                  : "bg-white hover:bg-paper"
               }`}
             >
-              {r}
+              <span className="block font-display text-lg font-bold">
+                {r.label}
+              </span>
+              <span className="block text-sm">{r.note}</span>
             </button>
           ))}
         </div>
 
-        <input
-          className="w-full rounded border border-gray-600 bg-transparent px-3 py-2"
-          placeholder={role === "student" ? "Full name" : "Company name"}
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-        <input
-          className="w-full rounded border border-gray-600 bg-transparent px-3 py-2"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="w-full rounded border border-gray-600 bg-transparent px-3 py-2"
-          type="password"
-          placeholder="Password (min 6 characters)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={6}
-          required
-        />
+        <div>
+          <label htmlFor="name" className="mb-1 block text-sm font-semibold">
+            {role === "student" ? "Full name" : "Company name"}
+          </label>
+          <input
+            id="name"
+            className="input"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
+        </div>
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <div>
+          <label htmlFor="email" className="mb-1 block text-sm font-semibold">
+            Email
+          </label>
+          <input
+            id="email"
+            className="input"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-blue-600 px-3 py-2 font-medium disabled:opacity-50"
-        >
-          {loading ? "Creating..." : "Sign up"}
+        <div>
+          <label htmlFor="password" className="mb-1 block text-sm font-semibold">
+            Password
+          </label>
+          <input
+            id="password"
+            className="input"
+            type="password"
+            placeholder="At least 6 characters"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            minLength={6}
+            required
+          />
+        </div>
+
+        {error && (
+          <p
+            role="alert"
+            className="rounded-lg border-2 border-ink bg-coral/20 px-3 py-2 text-sm"
+          >
+            {error}
+          </p>
+        )}
+
+        <button type="submit" disabled={loading} className="btn btn-primary w-full">
+          {loading ? "Creating account..." : "Create account"}
         </button>
 
         <p className="text-sm">
           Already have an account?{" "}
-          <Link href="/login" className="underline">
+          <Link href="/login" className="font-semibold underline">
             Log in
           </Link>
         </p>
