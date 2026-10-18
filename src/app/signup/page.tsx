@@ -56,10 +56,10 @@ export default function SignupPage() {
               type="button"
               aria-pressed={role === r.id}
               onClick={() => setRole(r.id)}
-              className={`rounded-xl border-2 border-ink p-3 text-left transition ${
+              className={`rounded-xl border border-line p-3 text-left transition ${
                 role === r.id
-                  ? `${r.on} shadow-[3px_3px_0_var(--color-ink)]`
-                  : "bg-white hover:bg-paper"
+                  ? `${r.on} [box-shadow:var(--pop-shadow)]`
+                  : "bg-surface text-ink hover:bg-paper"
               }`}
             >
               <span className="block font-display text-lg font-bold">
@@ -116,7 +116,7 @@ export default function SignupPage() {
         {error && (
           <p
             role="alert"
-            className="rounded-lg border-2 border-ink bg-coral/20 px-3 py-2 text-sm"
+            className="rounded-lg border border-line bg-coral/20 px-3 py-2 text-sm"
           >
             {error}
           </p>

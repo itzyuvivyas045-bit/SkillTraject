@@ -55,7 +55,7 @@ export default function TrustLadder() {
       <div className="mb-6 flex items-center gap-4">
         <div
           key={`${skill}-${tier}`}
-          className={`pop grid h-16 w-16 place-items-center rounded-2xl border-2 border-ink font-display text-2xl font-extrabold ${current.bg}`}
+          className={`pop grid h-16 w-16 place-items-center rounded-2xl border border-line font-display text-2xl font-extrabold ${current.bg}`}
         >
           {current.glyph}
         </div>
@@ -69,8 +69,8 @@ export default function TrustLadder() {
         {TIERS.map((t, i) => (
           <div
             key={t.label}
-            className={`h-3 flex-1 rounded-full border-2 border-ink transition-colors duration-300 ${
-              i <= tier ? t.bg : "bg-white"
+            className={`h-3 flex-1 rounded-full border border-line transition-colors duration-300 ${
+              i <= tier ? t.bg : "bg-surface text-ink"
             }`}
           />
         ))}

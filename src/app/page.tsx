@@ -46,7 +46,7 @@ export default async function StudentHome() {
             {myList.map((s) => (
               <li
                 key={s.id}
-                className="flex items-center gap-2 rounded-xl border-2 border-ink px-3 py-2"
+                className="flex items-center gap-2 rounded-xl border border-line px-3 py-2"
               >
                 <span className="font-semibold">{s.name}</span>
                 <SkillBadge tier={s.tier} />
@@ -63,7 +63,7 @@ export default async function StudentHome() {
       <section className="grid gap-5 md:grid-cols-3">
         {TIERS.map((t) => (
           <div key={t.name} className={`card flex items-start gap-4 p-5 ${t.bg}`}>
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border-2 border-ink bg-white font-display text-lg font-extrabold">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-surface text-ink font-display text-lg font-extrabold">
               {t.glyph}
             </span>
             <div>

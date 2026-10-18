@@ -74,7 +74,7 @@ export default function ProfileForm({
       {message && (
         <p
           role={message.type === "error" ? "alert" : "status"}
-          className={`rounded-lg border-2 border-ink px-3 py-2 text-sm ${
+          className={`rounded-lg border border-line px-3 py-2 text-sm ${
             message.type === "ok" ? "bg-mint/30" : "bg-coral/20"
           }`}
         >

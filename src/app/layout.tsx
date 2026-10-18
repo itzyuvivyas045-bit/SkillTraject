@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dmsans",
+  variable: "--font-jakarta",
 });
 
 export const metadata: Metadata = {
@@ -18,13 +13,23 @@ export const metadata: Metadata = {
   description: "Skills that come with proof.",
 };
 
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="clean"||t==="dark"||t==="soft")document.documentElement.dataset.theme=t}catch(e){}`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      data-theme="clean"
+      className={jakarta.variable}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <Navbar />
         {children}

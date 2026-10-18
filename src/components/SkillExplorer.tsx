@@ -101,7 +101,7 @@ export default function SkillExplorer({
       {error && (
         <p
           role="alert"
-          className="rounded-lg border-2 border-ink bg-coral/20 px-3 py-2 text-sm"
+          className="rounded-lg border border-line bg-coral/20 px-3 py-2 text-sm"
         >
           {error}
         </p>

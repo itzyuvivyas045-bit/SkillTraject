@@ -13,7 +13,7 @@ export default function StudentNav() {
   const pathname = usePathname();
 
   return (
-    <div className="border-b-2 border-ink bg-paper">
+    <div className="border-b-2 border-line bg-paper">
       <div className="mx-auto flex max-w-6xl gap-2 px-6 py-3">
         {TABS.map((t) => (
           <Link

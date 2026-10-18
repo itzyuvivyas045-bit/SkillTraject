@@ -9,7 +9,7 @@ export default function SkillBadge({ tier }: { tier: number }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border-2 border-ink px-2.5 py-0.5 text-sm font-semibold ${t.bg}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-0.5 text-sm font-semibold ${t.bg}`}
     >
       <span aria-hidden="true">{t.glyph}</span>
       {t.label}
