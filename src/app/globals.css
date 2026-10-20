@@ -16,9 +16,8 @@
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
 }
 
-/* ---------- Theme 1: Clean and professional (default) ---------- */
-:root,
-:root[data-theme="clean"] {
+/* Light (default) */
+:root {
   --t-paper: #f8fafc;
   --t-surface: #ffffff;
   --t-ink: #0f172a;
@@ -43,65 +42,32 @@
   --btn-active-move: translateY(0);
   --btn-active-shadow: 0 1px 2px rgb(15 23 42 / 0.12);
   --pop-shadow: 0 2px 8px rgb(79 70 229 / 0.2);
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
-/* ---------- Theme 2: Dark and sleek ---------- */
-:root[data-theme="dark"] {
-  --t-paper: #0b0f1a;
-  --t-surface: #131a2a;
-  --t-ink: #e6eaf5;
-  --t-line: #27314b;
-  --t-primary: #7c5cff;
-  --t-on-primary: #ffffff;
-  --t-mint: #34d399;
-  --t-gold: #fbbf24;
-  --t-coral: #fb7185;
-  --t-mist: #2a3350;
-  --on-accent: #0b0f1a;
+/* Dark, when the system is set to dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --t-paper: #0b0f1a;
+    --t-surface: #131a2a;
+    --t-ink: #e6eaf5;
+    --t-line: #27314b;
+    --t-primary: #7c5cff;
+    --t-on-primary: #ffffff;
+    --t-mint: #34d399;
+    --t-gold: #fbbf24;
+    --t-coral: #fb7185;
+    --t-mist: #2a3350;
+    --on-accent: #0b0f1a;
 
-  --primary-bg: var(--t-primary);
-  --page-bg: radial-gradient(60rem 28rem at 85% -10%, rgb(124 92 255 / 0.22), transparent), #0b0f1a;
-  --radius-card: 1rem;
-  --radius-ctl: 0.625rem;
-  --bw: 1px;
-  --card-shadow: 0 12px 32px rgb(0 0 0 / 0.45);
-  --btn-shadow: 0 0 0 0 transparent;
-  --btn-hover-shadow: 0 0 24px rgb(124 92 255 / 0.55);
-  --btn-hover-move: translateY(-1px);
-  --btn-active-move: translateY(0);
-  --btn-active-shadow: 0 0 10px rgb(124 92 255 / 0.4);
-  --pop-shadow: 0 0 18px rgb(124 92 255 / 0.4);
-  color-scheme: dark;
-}
-
-/* ---------- Theme 3: Soft and colorful ---------- */
-:root[data-theme="soft"] {
-  --t-paper: #fdf4ff;
-  --t-surface: #ffffff;
-  --t-ink: #2d2250;
-  --t-line: #efe3fb;
-  --t-primary: #8b5cf6;
-  --t-on-primary: #ffffff;
-  --t-mint: #86efac;
-  --t-gold: #fde047;
-  --t-coral: #fda4c4;
-  --t-mist: #ede9fe;
-  --on-accent: #2d2250;
-
-  --primary-bg: linear-gradient(135deg, #8b5cf6, #ec4899);
-  --page-bg: linear-gradient(160deg, #fdf2f8 0%, #f3e8ff 45%, #e0f2fe 100%);
-  --radius-card: 1.75rem;
-  --radius-ctl: 1rem;
-  --bw: 1px;
-  --card-shadow: 0 12px 32px rgb(139 92 246 / 0.15);
-  --btn-shadow: 0 6px 16px rgb(139 92 246 / 0.3);
-  --btn-hover-shadow: 0 10px 24px rgb(236 72 153 / 0.35);
-  --btn-hover-move: translateY(-2px);
-  --btn-active-move: translateY(1px);
-  --btn-active-shadow: 0 2px 6px rgb(139 92 246 / 0.3);
-  --pop-shadow: 0 6px 16px rgb(139 92 246 / 0.25);
-  color-scheme: light;
+    --primary-bg: var(--t-primary);
+    --page-bg: radial-gradient(60rem 28rem at 85% -10%, rgb(124 92 255 / 0.22), transparent), #0b0f1a;
+    --card-shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+    --btn-shadow: 0 0 0 0 transparent;
+    --btn-hover-shadow: 0 0 24px rgb(124 92 255 / 0.55);
+    --btn-active-shadow: 0 0 10px rgb(124 92 255 / 0.4);
+    --pop-shadow: 0 0 18px rgb(124 92 255 / 0.4);
+  }
 }
 
 body {
@@ -196,24 +162,11 @@ body {
     border-color: transparent;
   }
 
-  /* text on bright accent backgrounds stays dark in every theme */
+  /* text on bright accent backgrounds stays dark in both modes */
   .bg-mint,
   .bg-gold,
   .bg-coral {
     color: var(--on-accent);
-  }
-
-  .theme-dot {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 999px;
-    border: 1px solid var(--t-line);
-    cursor: pointer;
-  }
-  :root[data-theme="clean"] [data-theme-btn="clean"],
-  :root[data-theme="dark"] [data-theme-btn="dark"],
-  :root[data-theme="soft"] [data-theme-btn="soft"] {
-    box-shadow: 0 0 0 2px var(--t-surface), 0 0 0 4px var(--t-primary);
   }
 }
 

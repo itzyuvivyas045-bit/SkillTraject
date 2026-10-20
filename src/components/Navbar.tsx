@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCurrentProfile } from "@/lib/auth";
 import LogoutButton from "./LogoutButton";
-import ThemeSwitcher from "./ThemeSwitcher";
+import Logo from "./Logo";
 
 export default async function Navbar() {
   const profile = await getCurrentProfile();
@@ -9,17 +9,11 @@ export default async function Navbar() {
   return (
     <nav className="border-b border-line bg-surface">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gold font-bold">
-            ★
-          </span>
-          <span className="font-display text-lg font-extrabold">
-            SkillTraject
-          </span>
+        <Link href="/" aria-label="SkillTraject home">
+          <Logo />
         </Link>
 
         <div className="flex items-center gap-4">
-          <ThemeSwitcher />
           {profile ? (
             <>
               <Link href="/dashboard" className="font-semibold hover:underline">
