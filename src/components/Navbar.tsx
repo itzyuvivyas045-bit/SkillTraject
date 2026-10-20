@@ -25,6 +25,11 @@ export default async function Navbar() {
               <Link href="/dashboard" className="font-semibold hover:underline">
                 Dashboard
               </Link>
+              {profile.is_admin && (
+                <Link href="/admin" className="font-semibold hover:underline">
+                  Admin
+                </Link>
+              )}
               <span className="hidden text-sm sm:inline">
                 {profile.full_name}
               </span>

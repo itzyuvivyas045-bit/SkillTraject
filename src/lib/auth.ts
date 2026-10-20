@@ -23,3 +23,10 @@ export async function requireRole(role: "student" | "company") {
   if (profile.role !== role) redirect("/dashboard");
   return profile;
 }
+
+export async function requireAdmin() {
+  const profile = await getCurrentProfile();
+  if (!profile) redirect("/login");
+  if (!profile.is_admin) redirect("/dashboard");
+  return profile;
+}
