@@ -11,8 +11,8 @@ export default async function TestsPage() {
     await Promise.all([
       supabase.from("skills").select("id, name"),
       supabase
-        .from("student_skills")
-        .select("skill_id, trust_tier")
+        .from("skill_status")
+        .select("skill_id, tier, gold_expires_at")
         .eq("student_id", profile.id),
       supabase
         .from("test_results")
@@ -34,9 +34,15 @@ export default async function TestsPage() {
 
   const list = (mine ?? []).map((m) => ({
     id: m.skill_id as number,
-    tier: m.trust_tier as number,
+    tier: m.tier as number,
     name: nameById[m.skill_id] ?? "Unknown skill",
     last: lastBySkill[m.skill_id] ?? null,
+    until: m.gold_expires_at
+      ? new Date(m.gold_expires_at).toLocaleDateString("en-IN", {
+          month: "short",
+          year: "numeric",
+        })
+      : null,
   }));
 
   return (
@@ -72,7 +78,9 @@ export default async function TestsPage() {
               </p>
 
               {s.tier >= 2 ? (
-                <p className="text-sm font-semibold">Gold badge earned</p>
+                <p className="text-sm font-semibold">
+                  Gold badge earned{s.until ? ` until ${s.until}` : ""}
+                </p>
               ) : (
                 <Link
                   href={`/student/test?skill=${s.id}`}
